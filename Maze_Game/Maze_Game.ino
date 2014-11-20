@@ -7,12 +7,29 @@ int b = 3;
 int c = 0;
 int d = 0;
 int e = 0;
+int f = 0;
+int g = 0;
+int checkFree = 0;
+int heading = 0;
+int minionX = 100;
+int minionOneY = 100;
+int minionTwoX = 100;
+int minionTwoY = 100;
+int minionThreeX = 100;
+int minionThreeY = 100;
+int minionFourX = 100;
+int minionFourY = 100;
+int minionFiveX = 100;
+int minionFiveY = 100;
+boolean left = false;
+boolean right = false;
+boolean up = false;
+boolean down = false;
 
 void setup()
 {
   MeggyJrSimpleSetup();
-  drawJ();
-  drawN();
+  drawMaze();
   DrawPx(3, 3, 1);
   DisplaySlate();
 }
@@ -22,7 +39,7 @@ void loop()
   shift(); 
 }
 
-void drawJ()
+void drawMaze()
 {
   for (int i = 0; i < 5; i++)
   {
@@ -37,22 +54,6 @@ void drawJ()
     DrawPx(w, 3, Green);
  }
   DrawPx(0, 4, Green);
-}
-
-void drawN()
-{
-  for (int r = 0; r < 4; r++)
-  {
-    DrawPx(7, r, Green);
-  }
-  for (int h = 0; h < 4; h++) 
-  {
-    DrawPx(4, h, Green);
-  } 
-  for (int l = 0; l < 2; l++) 
-  {
-    DrawPx(5 + l, 2 - l, Green);
-  }
 }
 
 void drawDot()
@@ -112,7 +113,7 @@ void shift()
 
 void ScreenSaver()
 {
-      for (int a = 1; a < 7; a++)
+    for (int a = 1; a < 7; a++)
     {
       DrawPx(1, a, x);
       DrawPx(a, 1, x);
@@ -149,8 +150,66 @@ void ScreenSaver()
     {
       shift();
     }
-    ScreenSaver();
     DisplaySlate();
     delay(500);
     ScreenSaver();
+}
+
+void spawn()
+{
+  DrawPx(0, 0, 0);
+}
+
+void identification()
+{
+  for (int r = 0; r < 8; r++)
+  {
+    for (int s = 0; s < 8; s++)
+    {
+      if ( ReadPx(s, r) == Blue)
+        minionOneX = s;
+        minionOneY = r; 
+    }
+  }
+}
+
+void pathing()
+{
+  checkFree = e + 1;
+  if ( ReadPx(checkFree, f) == 0)
+    right = true;
+    g++;
+  checkFree = e - 1;
+  if ( ReadPx(checkFree, f) == 0)
+    left = true;
+    g++;
+  checkFree = f + 1;
+  if ( ReadPx(e, checkFree) == 0)
+    up = true;
+    g++;
+  checkFree = f - 1;
+  if ( ReadPx(e, checkFree) == 0)
+    down = true;
+    g++;
+  heading = random(g);
+}
+
+void moveminion()
+{
+  if (heading = 0)
+ {
+   
+ } 
+  if (heading = 1)
+ {
+   
+ } 
+  if (heading = 2)
+ {
+   
+ } 
+  if (heading = 3)
+ {
+   
+ } 
 }
