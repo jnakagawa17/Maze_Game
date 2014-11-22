@@ -5,26 +5,15 @@ int z = 1;
 int a = 3;
 int b = 3;
 int c = 0;
-int d = 0;
 int e = 0;
 int f = 0;
 int g = 0;
+int h = 0;
 int checkFree = 0;
 int heading = 0;
+int minionAvailable = 0;
 int minionX = 100;
-int minionOneY = 100;
-int minionTwoX = 100;
-int minionTwoY = 100;
-int minionThreeX = 100;
-int minionThreeY = 100;
-int minionFourX = 100;
-int minionFourY = 100;
-int minionFiveX = 100;
-int minionFiveY = 100;
-boolean left = false;
-boolean right = false;
-boolean up = false;
-boolean down = false;
+int minionY = 100;
 
 void setup()
 {
@@ -157,7 +146,8 @@ void ScreenSaver()
 
 void spawn()
 {
-  DrawPx(0, 0, 0);
+  DrawPx(0, 0, Blue);
+  minionAvailable++;
 }
 
 void identification()
@@ -167,8 +157,8 @@ void identification()
     for (int s = 0; s < 8; s++)
     {
       if ( ReadPx(s, r) == Blue)
-        minionOneX = s;
-        minionOneY = r; 
+        minionX = s;
+        minionY = r; 
     }
   }
 }
@@ -194,22 +184,93 @@ void pathing()
   heading = random(g);
 }
 
-void moveminion()
+void moveMinion()
 {
   if (heading = 0)
  {
-   
+   if (right == true)
+   {
+     e = e + 1;
+   }
+   if (left == true)
+   {
+     e = e - 1;
+   }
+   if (up == true)
+   {
+     f = f + 1;
+   }
+   if (down == true)
+   {
+     f = f - 1;
+   }
  } 
   if (heading = 1)
  {
-   
+   if (left == true)
+   {
+     e = e + 1;
+   }
+   if (up == true)
+   {
+     e = e - 1;
+   }
+   if (down == true)
+   {
+     f = f + 1;
+   }
+   if (right == true)
+   {
+     f = f - 1;
+   }
  } 
   if (heading = 2)
  {
-   
+   if (up == true)
+   {
+     e = e + 1;
+   }
+   if (down == true)
+   {
+     e = e - 1;
+   }
+   if (right == true)
+   {
+     f = f + 1;
+   }
+   if (left == true)
+   {
+     f = f - 1;
+   }
  } 
   if (heading = 3)
  {
-   
+   if (down == true)
+   {
+     e = e + 1;
+   }
+   if (right == true)
+   {
+     e = e - 1;
+   }
+   if (left == true)
+   {
+     f = f + 1;
+   }
+   if (up == true)
+   {
+     f = f - 1;
+   }
  } 
+ DrawPx(e, f, Blue);
+ DisplaySlate();
+ delay(300);
+ if (h == minionAvailable)
+ {
+   pathing();
+ }
+}
+
+void exit()
+{
 }
